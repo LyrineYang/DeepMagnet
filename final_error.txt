@@ -1,0 +1,125 @@
+[GPU0] Epoch 0:   0%|                                  | 0/20 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 236, in <module>
+    train_ddp(args)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 132, in train_ddp
+    for batch in pbar:
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/tqdm/std.py", line 1181, in __iter__
+    for obj in iterable:
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/dataloader.py", line 1345, in _next_dat
+a
+    return self._process_data(data)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/dataloader.py", line 1371, in _process_
+data
+    data.reraise()
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/_utils.py", line 694, in reraise
+    raise exception
+KeyError: Caught KeyError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker
+_loop
+    data = fetcher.fetch(index)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/fetch.py", line 54, in fetch
+    return self.collate_fn(data)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 265, in defaul
+t_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 127, in collat
+e
+    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=col
+late_fn_map) for key in elem})
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 127, in <dictc
+omp>
+    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=col
+late_fn_map) for key in elem})
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 127, in collat
+e
+    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=col
+late_fn_map) for key in elem})
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 127, in <dictc
+omp>
+    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=col
+late_fn_map) for key in elem})
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/utils/data/_utils/collate.py", line 127, in <listc
+omp>
+    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=col
+late_fn_map) for key in elem})
+KeyError: 'center'
+
+[2026-01-03 12:43:07,412] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Sending process 2582093 closing signal SIGTERM
+[2026-01-03 12:43:07,476] torch.distributed.elastic.multiprocessing.api: [ERRO
+R] failed (exitcode: 1) local_rank: 0 (pid: 2582091) of binary: /scratch/ayuil
+le1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/python3.10
+Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/tor
+chrun", line 7, in <module>
+    sys.exit(main())
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init_
+_.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call_
+_
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_
+agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+scripts/train_ddp.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-01-03_12:43:07
+  host      : n15.mgmt.ai.cluster
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2582092)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+[2]:
+  time      : 2026-01-03_12:43:07
+  host      : n15.mgmt.ai.cluster
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2582094)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-03_12:43:07
+  host      : n15.mgmt.ai.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2582091)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+============================================================
+(base) bash-4.4$

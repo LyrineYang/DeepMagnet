@@ -1,0 +1,35 @@
+# H100 优化配置 - 单卡跑满 80GB
+seed: 42
+device: cuda
+mixed_precision: true
+
+optimizer:
+  name: adamw
+  lr: 2e-3          # 大 batch 可适当提高 lr
+  weight_decay: 1e-4
+
+scheduler:
+  name: cosine
+  warmup_steps: 200
+  max_steps: 50000
+
+training:
+  batch_size: 64     # H100 80GB 可跑 64 (64^3 网格)
+  epochs: 50
+  grad_clip: 1.0
+  num_workers: 8     # 增加数据加载并行
+  val_interval: 1
+  ckpt_dir: outputs/checkpoints
+  log_interval: 20
+  save_top_k: 3
+  early_stop_patience: 5
+
+paths:
+  train_shards: data/processed/train
+  val_shards: data/processed/val
+  test_shards: data/processed/test
+  metadata: data/metadata
+  outputs: outputs
+
+metrics:
+  threshold: 0.5

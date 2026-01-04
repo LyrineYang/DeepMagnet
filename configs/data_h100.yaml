@@ -1,0 +1,39 @@
+# H100 大规模数据配置
+grid:
+  size: [64, 64, 64]
+  bounds: [-0.2, 0.2]
+  voxel_size: 0.00625
+
+coil:
+  type: double_d
+  radius: 0.05
+  separation: 0.02
+  turns: 50
+  current: 1.5
+  frequency: 8000
+  sweep_steps: 64
+  trajectory: line
+
+signal:
+  samples: 256
+  noise_std: 0.01
+
+shapes:
+  types: ["box", "cylinder", "compound", "mnist"]
+  weights: [0.3, 0.3, 0.2, 0.2]
+  size_range: [0.02, 0.08]
+  min_distance_from_coil: 0.015
+  mnist:
+    root: data/mnist
+    threshold: 0.4
+    scale_range: [0.4, 0.8]
+    extrude_depth: 0.2
+    rotate: true
+
+dataset:
+  train: 10000       # 增加到 10000 样本
+  val: 1000
+  test: 1000
+  shard_size: 256    # 增大 shard 减少 I/O
+  output_dir: data/processed
+  metadata_dir: data/metadata

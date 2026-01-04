@@ -1,0 +1,41 @@
+# Small dataset for overfitting test
+# Goal: Verify model can memorize 500 samples
+grid:
+  size: [64, 64, 64]
+  bounds: [-0.2, 0.2]
+  voxel_size: 0.00625
+
+coil:
+  type: double_d
+  radius: 0.05
+  separation: 0.02
+  turns: 50
+  current: 1.5
+  frequency: 8000
+  sweep_steps: 576  # 24x24 grid for 2D heatmap input
+  trajectory: grid  # Changed from line to grid for spatial correlation
+
+signal:
+  samples: 256
+  noise_std: 0.005  # Lower noise for easier learning
+
+shapes:
+  types: ["box", "cylinder", "mnist"]
+  weights: [0.3, 0.3, 0.4]  # Increase MNIST weight to 40% for better learning
+  size_range: [0.15, 0.25]  # Bigger objects = stronger signal = easier to learn
+  min_distance_from_coil: 0.01
+  mnist:
+    root: data/mnist
+    threshold: 0.3  # Lower threshold = thicker strokes
+    scale_range: [0.5, 0.8]  # Larger digits
+    extrude_depth: 0.25  # 25% thickness for stronger signal
+    rotate: false  # Disable rotation for easier overfitting
+    dilation: 2  # 5x5 morphological dilation for FAT strokes
+
+dataset:
+  train: 500        # Small dataset for overfitting
+  val: 50
+  test: 50
+  shard_size: 50    # Smaller shards
+  output_dir: data/overfit
+  metadata_dir: data/overfit_meta

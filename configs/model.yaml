@@ -1,0 +1,28 @@
+arch:
+  name: grid_segnet  # Changed to grid_segnet for 2D heatmap
+  input_grid_size: 24 # 24x24 input grid (match 576 steps)
+  grid_encoder:
+    base_channels: 64
+    depth: 3
+    latent_dim: 512
+  decoder3d:
+    base_channels: 64
+    depth: 4
+  heads:
+    predict_Bfield: false # Disable unused heads for overfit
+
+loss:
+  mask:
+    type: dice_bce
+    weight: 1.0
+    pos_weight: 20.0  # Critical! Weight for positive class (matches successful test)
+  bfield:
+    type: huber
+    weight: 0.0  # Disabled for overfitting - focus on mask only
+  ssim:
+    enable: false
+    weight: 0.0
+
+metrics:
+  compute_fps: true
+  threshold: 0.5

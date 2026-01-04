@@ -1,0 +1,29 @@
+============================================================
+POSITIONAL ENCODING OVERFITTING TEST
+4 Channels: Signal + X + Y + Z
+============================================================
+Device: cuda
+
+1. Loading dataset...
+   Samples: 500
+
+2. Building SimpleSegNet (4-channel)...
+   Parameters: 28,085,441
+
+3. Training for 50 epochs...
+------------------------------------------------------------
+Epoch  0: loss=1.0823, dice=0.1639, best=0.1639
+Epoch  5: loss=0.5395, dice=0.3977, best=0.3977
+Epoch 10: loss=0.4988, dice=0.4305, best=0.4425
+Epoch 15: loss=0.4679, dice=0.4588, best=0.4607
+Epoch 20: loss=0.4400, dice=0.4784, best=0.4906
+Epoch 25: loss=0.4311, dice=0.4949, best=0.5007
+Epoch 30: loss=0.4078, dice=0.5133, best=0.5213
+Epoch 35: loss=0.3806, dice=0.5414, best=0.5414
+Epoch 40: loss=0.3665, dice=0.5620, best=0.5620
+Epoch 45: loss=0.3505, dice=0.5735, best=0.5735
+Epoch 49: loss=0.3486, dice=0.5775, best=0.5775
+
+============================================================
+Final Best Dice: 0.5775
+❌ FAIL: Still cannot learn geometry.

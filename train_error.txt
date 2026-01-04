@@ -1,0 +1,125 @@
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/parallel/distributed.py", line 1355, in _run_dd
+p_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call
+_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/models/deeponet
+.py", line 142, in forward
+    features = features + branch_exp * trunk_exp
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 GiB.
+GPU 0 has a total capacty of 93.12 GiB of which 2.95 GiB is free. Including no
+n-PyTorch memory, this process has 90.15 GiB memory in use. Of the allocated m
+emory 89.00 GiB is allocated by PyTorch, and 17.28 MiB is reserved by PyTorch
+but unallocated. If reserved but unallocated memory is large try setting max_s
+plit_size_mb to avoid fragmentation.  See documentation for Memory Management
+and PYTORCH_CUDA_ALLOC_CONF
+Traceback (most recent call last):
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 250, in <module>
+    train_ddp(args)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 154, in train_ddp
+    outputs = model(signals, flat_coords)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call
+_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/parallel/distributed.py", line 1519, in forward
+    else self._run_ddp_forward(*inputs, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/parallel/distributed.py", line 1355, in _run_dd
+p_forward
+    return self.module(*inputs, **kwargs)  # type: ignore[index]
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call
+_impl
+    return self._call_impl(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/models/deeponet
+.py", line 142, in forward
+    features = features + branch_exp * trunk_exp
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 GiB.
+GPU 3 has a total capacty of 93.12 GiB of which 2.95 GiB is free. Including no
+n-PyTorch memory, this process has 90.15 GiB memory in use. Of the allocated m
+emory 89.00 GiB is allocated by PyTorch, and 17.28 MiB is reserved by PyTorch
+but unallocated. If reserved but unallocated memory is large try setting max_s
+plit_size_mb to avoid fragmentation.  See documentation for Memory Management
+and PYTORCH_CUDA_ALLOC_CONF
+[2026-01-03 22:29:09,054] torch.distributed.elastic.multiprocessing.api: [ERRO
+R] failed (exitcode: 1) local_rank: 0 (pid: 2718376) of binary: /scratch/ayuil
+le1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/python3.10
+Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/tor
+chrun", line 7, in <module>
+    sys.exit(main())
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init_
+_.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call_
+_
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_
+agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+scripts/train_ddp.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-01-03_22:29:09
+  host      : n15.mgmt.ai.cluster
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2718377)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+[2]:
+  time      : 2026-01-03_22:29:09
+  host      : n15.mgmt.ai.cluster
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2718378)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+[3]:
+  time      : 2026-01-03_22:29:09
+  host      : n15.mgmt.ai.cluster
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2718379)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-03_22:29:09
+  host      : n15.mgmt.ai.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2718376)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+============================================================
+(base) bash-4.4$

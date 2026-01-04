@@ -1,0 +1,39 @@
+# 小规模快速验证配置
+grid:
+  size: [32, 32, 32]
+  bounds: [-0.15, 0.15]
+  voxel_size: 0.0094
+
+coil:
+  type: double_d
+  radius: 0.05
+  separation: 0.02
+  turns: 30
+  current: 1.2
+  frequency: 4000
+  sweep_steps: 32
+  trajectory: line
+
+signal:
+  samples: 128
+  noise_std: 0.02
+
+shapes:
+  types: ["box", "cylinder", "mnist"]
+  weights: [0.4, 0.4, 0.2]
+  size_range: [0.02, 0.06]
+  min_distance_from_coil: 0.01
+  mnist:
+    root: data/mnist
+    threshold: 0.45
+    scale_range: [0.4, 0.7]
+    extrude_depth: 0.2
+    rotate: true
+
+dataset:
+  train: 200
+  val: 50
+  test: 50
+  shard_size: 64
+  output_dir: data/processed_small
+  metadata_dir: data/metadata_small

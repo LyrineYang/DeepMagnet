@@ -1,0 +1,36 @@
+# 4x H100 NVL 优化配置
+seed: 42
+device: cuda
+mixed_precision: false
+compile: false  # torch.compile is optional; keep off for stability
+
+optimizer:
+  name: adamw
+  lr: 5e-4          # 4 GPU, 线性放大 lr (increased for faster convergence)
+  weight_decay: 1e-4
+
+scheduler:
+  name: cosine
+  warmup_steps: 100
+  max_steps: 50000
+
+training:
+  batch_size: 32    # 每卡 32, 总 batch = 128 (reduced to prevent OOM)
+  epochs: 50
+  grad_clip: 1.0
+  num_workers: 4    # 减少 workers 以避免死锁
+  val_interval: 1
+  ckpt_dir: outputs/checkpoints
+  log_interval: 10
+  save_top_k: 3
+  early_stop_patience: 5
+
+paths:
+  train_shards: data/processed/train
+  val_shards: data/processed/val
+  test_shards: data/processed/test
+  metadata: data/metadata
+  outputs: outputs
+
+metrics:
+  threshold: 0.5

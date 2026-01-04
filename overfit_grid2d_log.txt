@@ -1,0 +1,30 @@
+============================================================
+CONV2D + 24x24 GRID OVERFITTING TEST
+(Conv2d sees 100% spatial correlations)
+============================================================
+Device: cuda
+
+1. Loading dataset...
+   Samples: 500
+   Sweep steps: 576 (24x24 grid)
+
+2. Building GridSegNet (Conv2d)...
+   Parameters: 37,570,625
+
+3. Training for 100 epochs...
+------------------------------------------------------------
+Epoch  0: loss=1.2444, dice=0.0881, best=0.0881
+Epoch 10: loss=0.5648, dice=0.3669, best=0.3837
+Epoch 20: loss=0.4801, dice=0.4517, best=0.4558
+Epoch 30: loss=0.4261, dice=0.5038, best=0.5077
+Epoch 40: loss=0.3900, dice=0.5341, best=0.5543
+Epoch 50: loss=0.3495, dice=0.5845, best=0.5893
+Epoch 60: loss=0.3312, dice=0.6128, best=0.6356
+Epoch 70: loss=0.2872, dice=0.6525, best=0.6579
+Epoch 80: loss=0.2482, dice=0.7058, best=0.7058
+Epoch 90: loss=0.2323, dice=0.7209, best=0.7209
+Epoch 99: loss=0.2210, dice=0.7307, best=0.7307
+
+============================================================
+Final Best Dice: 0.7307
+⚠️  GOOD: Significant improvement, may need more epochs.

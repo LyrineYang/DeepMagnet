@@ -1,0 +1,34 @@
+seed: 123
+device: cpu
+mixed_precision: false
+
+optimizer:
+  name: adamw
+  lr: 1e-3
+  weight_decay: 1e-4
+
+scheduler:
+  name: none
+  warmup_steps: 0
+  max_steps: 1000
+
+training:
+  batch_size: 2
+  epochs: 1
+  grad_clip: 1.0
+  num_workers: 0
+  val_interval: 1
+  ckpt_dir: outputs/checkpoints_tiny
+  log_interval: 5
+  save_top_k: 1
+  early_stop_patience: 1
+
+paths:
+  train_shards: data/processed_tiny/train
+  val_shards: data/processed_tiny/val
+  test_shards: data/processed_tiny/test
+  metadata: data/metadata_tiny
+  outputs: outputs
+
+metrics:
+  threshold: 0.5

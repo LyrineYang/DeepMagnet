@@ -1,0 +1,39 @@
+============================================================
+POSITIONAL ENCODING OVERFITTING TEST
+4 Channels: Signal + X + Y + Z
+============================================================
+Device: cuda
+
+1. Loading dataset...
+   Samples: 500
+
+2. Building SimpleSegNet (4-channel)...
+   Parameters: 28,085,441
+
+3. Training for 100 epochs...
+------------------------------------------------------------
+Epoch  0: loss=1.0349, dice=0.2223, best=0.2223
+Epoch  5: loss=0.5304, dice=0.4265, best=0.4265
+Epoch 10: loss=0.4943, dice=0.4396, best=0.4483
+Epoch 15: loss=0.4537, dice=0.4787, best=0.4787
+Epoch 20: loss=0.4541, dice=0.4781, best=0.4848
+Epoch 25: loss=0.4476, dice=0.4892, best=0.5001
+Epoch 30: loss=0.4284, dice=0.4986, best=0.5001
+Epoch 35: loss=0.4181, dice=0.5129, best=0.5141
+Epoch 40: loss=0.3947, dice=0.5336, best=0.5336
+Epoch 45: loss=0.4066, dice=0.5225, best=0.5363
+Epoch 49: loss=0.3823, dice=0.5412, best=0.5432
+Epoch 50: loss=0.3915, dice=0.5472, best=0.5472
+Epoch 55: loss=0.3639, dice=0.5632, best=0.5632
+Epoch 60: loss=0.3635, dice=0.5760, best=0.5760
+Epoch 65: loss=0.3419, dice=0.5872, best=0.5872
+Epoch 70: loss=0.3333, dice=0.5936, best=0.6024
+Epoch 75: loss=0.3230, dice=0.6114, best=0.6114
+Epoch 80: loss=0.3156, dice=0.6187, best=0.6187
+Epoch 85: loss=0.3037, dice=0.6366, best=0.6366
+Epoch 90: loss=0.2955, dice=0.6408, best=0.6408
+Epoch 95: loss=0.2894, dice=0.6475, best=0.6513
+
+============================================================
+Final Best Dice: 0.6513
+✅ SUCCESS: Positional Encoding works!

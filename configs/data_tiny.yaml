@@ -1,0 +1,32 @@
+# 极小规模 smoke 测试配置（CPU 可跑）
+grid:
+  size: [16, 16, 16]
+  bounds: [-0.1, 0.1]
+  voxel_size: 0.0125
+
+coil:
+  type: double_d
+  radius: 0.04
+  separation: 0.015
+  turns: 20
+  current: 1.0
+  frequency: 2000
+  sweep_steps: 8
+  trajectory: line
+
+signal:
+  samples: 64
+  noise_std: 0.02
+
+shapes:
+  types: ["box"]
+  size_range: [0.02, 0.05]
+  min_distance_from_coil: 0.008
+
+dataset:
+  train: 8
+  val: 2
+  test: 2
+  shard_size: 8
+  output_dir: data/processed_tiny
+  metadata_dir: data/metadata_tiny

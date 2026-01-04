@@ -1,0 +1,225 @@
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 1:   0%|                                  | 0/20 [00:00<?, ?it/s]
+^C[2026-01-03 21:44:58,724] torch.distributed.elastic.agent.server.api: [WARNI
+NG] Received Signals.SIGINT death signal, shutting down workers
+[2026-01-03 21:44:58,724] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Sending process 2687408 closing signal SIGINT
+[2026-01-03 21:44:58,724] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Sending process 2687409 closing signal SIGINT
+[2026-01-03 21:44:58,726] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Sending process 2687410 closing signal SIGINT
+[2026-01-03 21:44:58,726] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Sending process 2687411 closing signal SIGINT
+/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/torchrun --
+nproc_per_node=4 scripts/train_ddp.py
+[2026-01-03 21:45:28,726] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Unable to shutdown process 2687408 via Signals.SIGINT, forcefully exiting
+ via Signals.SIGKILL
+[2026-01-03 21:45:29,672] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Unable to shutdown process 2687409 via Signals.SIGINT, forcefully exiting
+ via Signals.SIGKILL
+[2026-01-03 21:45:30,728] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Unable to shutdown process 2687410 via Signals.SIGINT, forcefully exiting
+ via Signals.SIGKILL
+[2026-01-03 21:45:31,911] torch.distributed.elastic.multiprocessing.api: [WARN
+ING] Unable to shutdown process 2687411 via Signals.SIGINT, forcefully exiting
+ via Signals.SIGKILL
+Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/tor
+chrun", line 7, in <module>
+    sys.exit(main())
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init_
+_.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call_
+_
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_
+agent
+    result = agent.run()
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in
+wrapper
+    result = f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 736
+, in run
+    result = self._invoke_run(role)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 877
+, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line
+62, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigva
+l=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 2687388
+ got signal: 2
+(base) bash-4.4$ /scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagne
+t/bin/torchrun --nproc_per_node=4 scripts/train_ddp.py
+[GPU0] Epoch 0: 100%|██████████████| 20/20 [00:08<00:00,  2.34it/s, loss=1.06]
+Epoch 0 val_loss=1.0286 metrics={'dice': 0.0, 'psnr_b': 23.966064453125}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 1: 100%|██████████████| 20/20 [00:05<00:00,  3.56it/s, loss=1.03]
+Epoch 1 val_loss=1.0248 metrics={'dice': 0.0, 'psnr_b': 25.564870834350586}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 2: 100%|██████████████| 20/20 [00:05<00:00,  3.34it/s, loss=1.04]
+Epoch 2 val_loss=1.0395 metrics={'dice': 0.0, 'psnr_b': 26.616050720214844}
+[GPU0] Epoch 3: 100%|██████████████| 20/20 [00:06<00:00,  3.27it/s, loss=1.03]
+Epoch 3 val_loss=1.0253 metrics={'dice': 0.0, 'psnr_b': 27.83291721343994}
+[GPU0] Epoch 4: 100%|██████████████| 20/20 [00:05<00:00,  3.55it/s, loss=1.03]
+Epoch 4 val_loss=1.0283 metrics={'dice': 0.002413787180557847, 'psnr_b': 23.66
+8965339660645}
+[GPU0] Epoch 5: 100%|██████████████| 20/20 [00:05<00:00,  3.52it/s, loss=1.05]
+Epoch 5 val_loss=1.0320 metrics={'dice': 0.0016275930684059858, 'psnr_b': 20.0
+4487705230713}
+[GPU0] Epoch 6: 100%|██████████████| 20/20 [00:05<00:00,  3.50it/s, loss=1.02]
+Epoch 6 val_loss=1.0190 metrics={'dice': 0.0022521691862493753, 'psnr_b': 27.2
+39142417907715}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 7: 100%|██████████████| 20/20 [00:06<00:00,  3.30it/s, loss=1.03]
+Epoch 7 val_loss=1.0279 metrics={'dice': 0.0021602336782962084, 'psnr_b': 24.2
+6223373413086}
+[GPU0] Epoch 8: 100%|██████████████| 20/20 [00:05<00:00,  3.64it/s, loss=1.01]
+Epoch 8 val_loss=1.0163 metrics={'dice': 0.0028447863878682256, 'psnr_b': 25.1
+14540100097656}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 9: 100%|██████████████| 20/20 [00:05<00:00,  3.58it/s, loss=1.03]
+Epoch 9 val_loss=1.0245 metrics={'dice': 0.003370854537934065, 'psnr_b': 23.07
+6982498168945}
+[GPU0] Epoch 10: 100%|█████████████| 20/20 [00:05<00:00,  3.53it/s, loss=1.03]
+Epoch 10 val_loss=1.0149 metrics={'dice': 0.0027149006873514736, 'psnr_b': 22.
+945396423339844}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 11: 100%|█████████████| 20/20 [00:05<00:00,  3.45it/s, loss=1.01]
+Epoch 11 val_loss=1.0182 metrics={'dice': 0.0027316627092659473, 'psnr_b': 24.
+40849781036377}
+[GPU0] Epoch 12: 100%|████████████████| 20/20 [00:06<00:00,  3.31it/s, loss=1]
+Epoch 12 val_loss=1.0143 metrics={'dice': 0.0056434390135109425, 'psnr_b': 26.
+277335166931152}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 13: 100%|████████████████| 20/20 [00:05<00:00,  3.48it/s, loss=1]
+Epoch 13 val_loss=1.0247 metrics={'dice': 0.005078616552054882, 'psnr_b': 23.3
+46726417541504}
+[GPU0] Epoch 14: 100%|████████████████| 20/20 [00:05<00:00,  3.42it/s, loss=1]
+Epoch 14 val_loss=1.0144 metrics={'dice': 0.006909289630129933, 'psnr_b': 26.2
+71382331848145}
+[GPU0] Epoch 15: 100%|████████████| 20/20 [00:05<00:00,  3.44it/s, loss=0.996]
+Epoch 15 val_loss=1.0209 metrics={'dice': 0.0042692325077950954, 'psnr_b': 25.
+651421546936035}
+[GPU0] Epoch 16: 100%|█████████████| 20/20 [00:05<00:00,  3.60it/s, loss=1.01]
+Epoch 16 val_loss=1.0123 metrics={'dice': 0.008592977188527584, 'psnr_b': 24.0
+53689002990723}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 17: 100%|█████████████| 20/20 [00:05<00:00,  3.66it/s, loss=0.99]
+Epoch 17 val_loss=1.0181 metrics={'dice': 0.0064845525193959475, 'psnr_b': 23.
+20009136199951}
+[GPU0] Epoch 18: 100%|█████████████| 20/20 [00:05<00:00,  3.73it/s, loss=1.01]
+Epoch 18 val_loss=1.0234 metrics={'dice': 0.0030352564062923193, 'psnr_b': 21.
+42087745666504}
+[GPU0] Epoch 19: 100%|████████████| 20/20 [00:05<00:00,  3.70it/s, loss=0.997]
+Epoch 19 val_loss=1.0149 metrics={'dice': 0.00991438003256917, 'psnr_b': 21.92
+965030670166}
+[GPU0] Epoch 20: 100%|████████████| 20/20 [00:05<00:00,  3.65it/s, loss=0.996]
+Epoch 20 val_loss=1.0196 metrics={'dice': 0.006154946982860565, 'psnr_b': 21.2
+77873039245605}
+[GPU0] Epoch 21: 100%|████████████| 20/20 [00:05<00:00,  3.70it/s, loss=0.993]
+Epoch 21 val_loss=1.0008 metrics={'dice': 0.018872261978685856, 'psnr_b': 22.4
+1092586517334}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 22: 100%|████████████████| 20/20 [00:05<00:00,  3.70it/s, loss=1]
+Epoch 22 val_loss=1.0158 metrics={'dice': 0.00956265488639474, 'psnr_b': 22.09
+408473968506}
+[GPU0] Epoch 23: 100%|████████████| 20/20 [00:05<00:00,  3.60it/s, loss=0.969]
+Epoch 23 val_loss=1.0102 metrics={'dice': 0.01176800113171339, 'psnr_b': 21.75
+9475708007812}
+[GPU0] Epoch 24: 100%|████████████| 20/20 [00:05<00:00,  3.67it/s, loss=0.986]
+Epoch 24 val_loss=1.0148 metrics={'dice': 0.011335079791024327, 'psnr_b': 22.6
+7599582672119}
+[GPU0] Epoch 25: 100%|████████████| 20/20 [00:05<00:00,  3.62it/s, loss=0.989]
+Epoch 25 val_loss=1.0141 metrics={'dice': 0.01128878747113049, 'psnr_b': 22.17
+369842529297}
+[GPU0] Epoch 26: 100%|████████████| 20/20 [00:05<00:00,  3.46it/s, loss=0.999]
+Epoch 26 val_loss=1.0094 metrics={'dice': 0.013740433845669031, 'psnr_b': 23.7
+8390598297119}
+[GPU0] Epoch 27: 100%|████████████████| 20/20 [00:05<00:00,  3.57it/s, loss=1]
+Epoch 27 val_loss=1.0081 metrics={'dice': 0.013348466483876109, 'psnr_b': 22.3
+2011890411377}
+[GPU0] Epoch 28: 100%|████████████| 20/20 [00:05<00:00,  3.63it/s, loss=0.987]
+Epoch 28 val_loss=1.0205 metrics={'dice': 0.007723249029368162, 'psnr_b': 18.8
+750638961792}
+[GPU0] Epoch 29: 100%|████████████| 20/20 [00:05<00:00,  3.73it/s, loss=0.988]
+Epoch 29 val_loss=1.0160 metrics={'dice': 0.008563379291445017, 'psnr_b': 21.7
+33847618103027}
+[GPU0] Epoch 30: 100%|████████████| 20/20 [00:05<00:00,  3.65it/s, loss=0.979]
+Epoch 30 val_loss=1.0010 metrics={'dice': 0.018230924382805824, 'psnr_b': 23.6
+86389923095703}
+[GPU0] Epoch 31: 100%|████████████| 20/20 [00:05<00:00,  3.65it/s, loss=0.978]
+Epoch 31 val_loss=1.0169 metrics={'dice': 0.01061733951792121, 'psnr_b': 23.58
+1534385681152}
+[GPU0] Epoch 32: 100%|████████████| 20/20 [00:05<00:00,  3.59it/s, loss=0.997]
+Epoch 32 val_loss=1.0186 metrics={'dice': 0.009130986873060465, 'psnr_b': 21.9
+32327270507812}
+[GPU0] Epoch 33: 100%|████████████| 20/20 [00:05<00:00,  3.63it/s, loss=0.982]
+Epoch 33 val_loss=1.0064 metrics={'dice': 0.018531733192503452, 'psnr_b': 21.0
+70390701293945}
+[GPU0] Epoch 34: 100%|████████████| 20/20 [00:05<00:00,  3.69it/s, loss=0.982]
+Epoch 34 val_loss=1.0072 metrics={'dice': 0.014410417526960373, 'psnr_b': 22.4
+1238021850586}
+[GPU0] Epoch 35: 100%|█████████████| 20/20 [00:05<00:00,  3.85it/s, loss=0.98]
+Epoch 35 val_loss=1.0187 metrics={'dice': 0.008339382708072662, 'psnr_b': 20.4
+3084144592285}
+[GPU0] Epoch 36: 100%|████████████| 20/20 [00:05<00:00,  3.59it/s, loss=0.996]
+Epoch 36 val_loss=1.0075 metrics={'dice': 0.013977725524455309, 'psnr_b': 20.5
+55404663085938}
+[GPU0] Epoch 37: 100%|████████████| 20/20 [00:05<00:00,  3.41it/s, loss=0.979]
+Epoch 37 val_loss=0.9965 metrics={'dice': 0.02740367967635393, 'psnr_b': 23.54
+8344612121582}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 38: 100%|████████████| 20/20 [00:05<00:00,  3.41it/s, loss=0.975]
+Epoch 38 val_loss=1.0042 metrics={'dice': 0.017149259336292744, 'psnr_b': 24.5
+01270294189453}
+[GPU0] Epoch 39: 100%|████████████| 20/20 [00:05<00:00,  3.62it/s, loss=0.974]
+Epoch 39 val_loss=1.0227 metrics={'dice': 0.007336880080401897, 'psnr_b': 19.5
+07939338684082}
+[GPU0] Epoch 40: 100%|████████████| 20/20 [00:05<00:00,  3.81it/s, loss=0.981]
+Epoch 40 val_loss=1.0224 metrics={'dice': 0.00570041686296463, 'psnr_b': 24.52
+46000289917}
+[GPU0] Epoch 41: 100%|█████████████| 20/20 [00:05<00:00,  3.47it/s, loss=0.99]
+Epoch 41 val_loss=1.0177 metrics={'dice': 0.007960617891512811, 'psnr_b': 19.8
+38682174682617}
+[GPU0] Epoch 42: 100%|████████████| 20/20 [00:05<00:00,  3.70it/s, loss=0.974]
+Epoch 42 val_loss=1.0088 metrics={'dice': 0.013667358318343759, 'psnr_b': 22.7
+362117767334}
+[GPU0] Epoch 43: 100%|████████████| 20/20 [00:05<00:00,  3.63it/s, loss=0.986]
+Epoch 43 val_loss=1.0166 metrics={'dice': 0.009541623760014772, 'psnr_b': 22.6
+73954010009766}
+[GPU0] Epoch 44: 100%|████████████| 20/20 [00:05<00:00,  3.53it/s, loss=0.965]
+Epoch 44 val_loss=1.0140 metrics={'dice': 0.009882487123832107, 'psnr_b': 23.3
+96214485168457}
+[GPU0] Epoch 45: 100%|████████████| 20/20 [00:05<00:00,  3.57it/s, loss=0.981]
+Epoch 45 val_loss=1.0172 metrics={'dice': 0.00977699225768447, 'psnr_b': 24.23
+1359481811523}
+[GPU0] Epoch 46: 100%|████████████| 20/20 [00:05<00:00,  3.62it/s, loss=0.991]
+Epoch 46 val_loss=1.0117 metrics={'dice': 0.010978604899719357, 'psnr_b': 18.0
+532865524292}
+[GPU0] Epoch 47: 100%|████████████| 20/20 [00:05<00:00,  3.68it/s, loss=0.977]
+Epoch 47 val_loss=1.0013 metrics={'dice': 0.01777306431904435, 'psnr_b': 20.80
+8626174926758}
+[GPU0] Epoch 48: 100%|████████████| 20/20 [00:05<00:00,  3.72it/s, loss=0.991]
+Epoch 48 val_loss=1.0115 metrics={'dice': 0.014125021174550056, 'psnr_b': 23.4
+63130950927734}
+[GPU0] Epoch 49: 100%|████████████| 20/20 [00:05<00:00,  3.56it/s, loss=0.966]
+Epoch 49 val_loss=1.0113 metrics={'dice': 0.014284300850704312, 'psnr_b': 22.1
+19354248046875}
+(base) bash-4.4$

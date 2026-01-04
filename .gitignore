@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific - exclude deepxde (unused external library)
+deepxde/
+
+# Data & outputs (generated at runtime)
+/data/
+/outputs/
+*.pt
+*.pth
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+wandb/

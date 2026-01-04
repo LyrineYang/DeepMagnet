@@ -1,0 +1,75 @@
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line
+62, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigva
+l=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 2585442
+ got signal: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/tor
+chrun", line 7, in <module>
+    sys.exit(main())
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init_
+_.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call_
+_
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 255, in launch_
+agent
+    result = agent.run()
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/metrics/api.py", line 124, in
+wrapper
+    result = f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/agent/server/api.py", line 748
+, in run
+    self._shutdown()
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/agent/server/local_elastic_age
+nt.py", line 289, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line
+331, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line
+713, in _close
+    handler.proc.wait(time_to_wait)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/subprocess.py", line 1209, in wait
+    return self._wait(timeout=timeout)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/subprocess.py", line 1953, in _wait
+    time.sleep(delay)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/api.py", line
+62, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigva
+l=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 2585442
+ got signal: 2
+(base) bash-4.4$ ^C
+(base) bash-4.4$ /scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagne
+t/bin/torchrun --nproc_per_node=4 scripts/train_ddp.py
+[GPU0] Epoch 0: 100%|██████████████| 20/20 [00:12<00:00,  1.55it/s, loss=1.06]
+Epoch 0 val_loss=1.0262 metrics={'dice': 0.0, 'psnr_b': 23.966064453125}
+Saved best model to outputs/checkpoints/best_model.pth
+[GPU0] Epoch 1:   0%|                                  | 0/20 [00:00<?, ?it/s]

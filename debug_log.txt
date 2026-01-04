@@ -1,0 +1,125 @@
+t")
+ValueError: f must be a string filename in order to use mmap argument
+Traceback (most recent call last):
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 236, in <module>
+Traceback (most recent call last):
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 236, in <module>
+Traceback (most recent call last):
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 236, in <module>
+    train_ddp(args)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 88, in train_ddp
+    train_ddp(args)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 88, in train_ddp
+    train_ddp(args)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/scripts/train_ddp.p
+y", line 88, in train_ddp
+    train_ds = VolumeDataset(train_cfg["paths"]["train_shards"], shard_size=sh
+ard_size)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/data/dataset.py
+", line 23, in __init__
+    train_ds = VolumeDataset(train_cfg["paths"]["train_shards"], shard_size=sh
+ard_size)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/data/dataset.py
+", line 23, in __init__
+    train_ds = VolumeDataset(train_cfg["paths"]["train_shards"], shard_size=sh
+ard_size)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/data/dataset.py
+", line 23, in __init__
+    data = load_shard(f)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/utils/io.py", l
+ine 27, in load_shard
+    data = load_shard(f)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/utils/io.py", l
+ine 27, in load_shard
+    data = load_shard(f)
+  File "/weka/scratch/ayuille1/jchen293/wcloong/DeepMagnet/src/utils/io.py", l
+ine 27, in load_shard
+    return torch.load(Path(path), map_location="cpu", mmap=True)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/serialization.py", line 1002, in load
+    return torch.load(Path(path), map_location="cpu", mmap=True)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/serialization.py", line 1002, in load
+    return torch.load(Path(path), map_location="cpu", mmap=True)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/serialization.py", line 1002, in load
+    raise ValueError("f must be a string filename in order to use mmap argumen
+t")
+ValueError: f must be a string filename in order to use mmap argument
+    raise ValueError("f must be a string filename in order to use mmap argumen
+t")
+ValueError: f must be a string filename in order to use mmap argument
+    raise ValueError("f must be a string filename in order to use mmap argumen
+t")
+ValueError: f must be a string filename in order to use mmap argument
+[2026-01-03 12:40:00,045] torch.distributed.elastic.multiprocessing.api: [ERRO
+R] failed (exitcode: 1) local_rank: 0 (pid: 2579832) of binary: /scratch/ayuil
+le1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/python3.10
+Traceback (most recent call last):
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/bin/tor
+chrun", line 7, in <module>
+    sys.exit(main())
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init_
+_.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 806, in main
+    run(args)
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/run.py", line 797, in run
+    elastic_launch(
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call_
+_
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/scratch/ayuille1/jchen293/anaconda3/envs/y-vlmeval/deepmagnet/lib/pyt
+hon3.10/site-packages/torch/distributed/launcher/api.py", line 264, in launch_
+agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+scripts/train_ddp.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2026-01-03_12:40:00
+  host      : n15.mgmt.ai.cluster
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2579833)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+[2]:
+  time      : 2026-01-03_12:40:00
+  host      : n15.mgmt.ai.cluster
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2579834)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+[3]:
+  time      : 2026-01-03_12:40:00
+  host      : n15.mgmt.ai.cluster
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2579835)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-01-03_12:40:00
+  host      : n15.mgmt.ai.cluster
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2579832)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic
+/errors.html
+============================================================
+(base) bash-4.4$

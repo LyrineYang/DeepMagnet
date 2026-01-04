@@ -1,0 +1,12 @@
+numpy<2
+pyyaml
+tqdm
+matplotlib
+pyvista
+torchvision
+streamlit
+plotly
+streamlit-drawable-canvas
+pandas
+opencv-python
+scipy

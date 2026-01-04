@@ -1,0 +1,8 @@
+data_root: data
+raw_dir: data/raw
+processed_dir: data/processed
+metadata_dir: data/metadata
+logs_dir: outputs/logs
+ckpt_dir: outputs/checkpoints
+fig_dir: reports/figs
+demo_dir: outputs/demo

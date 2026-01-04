@@ -1,0 +1,39 @@
+# 网格与线圈配置
+grid:
+  size: [64, 64, 64]
+  bounds: [-0.2, 0.2]  # 立方体物理范围（米）
+  voxel_size: 0.00625  # 自动根据 bounds/size 推导可覆盖
+
+coil:
+  type: double_d
+  radius: 0.05
+  separation: 0.02   # 双D线圈间距
+  turns: 50
+  current: 1.5       # 安培
+  frequency: 8000    # Hz
+  sweep_steps: 64    # 轨迹采样点数
+  trajectory: line   # line / grid / circle
+
+signal:
+  samples: 256       # 时间/频率采样点
+  noise_std: 0.01
+
+shapes:
+  types: ["box", "cylinder", "compound", "mnist"]
+  weights: [0.3, 0.3, 0.2, 0.2]  # 采样权重，长度与 types 对齐
+  size_range: [0.02, 0.08]  # 米
+  min_distance_from_coil: 0.015
+  mnist:
+    root: data/mnist
+    threshold: 0.4
+    scale_range: [0.4, 0.8]   # 占网格边长比例
+    extrude_depth: 0.2        # 占 z 轴比例
+    rotate: true
+
+dataset:
+  train: 5000
+  val: 500
+  test: 500
+  shard_size: 128
+  output_dir: data/processed
+  metadata_dir: data/metadata

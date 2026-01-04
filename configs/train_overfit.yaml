@@ -1,0 +1,34 @@
+seed: 42
+device: cuda
+mixed_precision: false  # Disabled for stability (matches successful test)
+
+optimizer:
+  name: adamw
+  lr: 1e-3  # Same as successful test
+  weight_decay: 1e-5  # Light regularization (matches successful test)
+
+scheduler:
+  name: cosine
+  warmup_steps: 50  # Fast warmup
+  max_steps: 50000
+
+training:
+  batch_size: 5  # ~9 steps per epoch = more gradient updates
+  epochs: 500  # 500 epochs for deep memorization
+  grad_clip: 1.0
+  num_workers: 4
+  val_interval: 20
+  ckpt_dir: outputs/checkpoints_overfit
+  log_interval: 5
+  save_top_k: 3
+  early_stop_patience: 100  # Very patient
+
+paths:
+  train_shards: data/overfit/train
+  val_shards: data/overfit/val
+  test_shards: data/overfit/test
+  metadata: data/overfit_meta
+  outputs: outputs/overfit
+
+metrics:
+  threshold: 0.5

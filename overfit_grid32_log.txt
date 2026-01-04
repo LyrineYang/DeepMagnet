@@ -1,0 +1,51 @@
+============================================================
+EXTENDED 32x32 GRID OVERFITTING
+500 epochs, sample duplication if loss > 0.1
+============================================================
+Device: cuda
+
+1. Loading dataset...
+   Samples: 500
+   Grid: 32x32 = 1024 points
+
+2. Building GridSegNet (Conv2d, 32x32)...
+   Parameters: 40,981,569
+
+3. Training for 500 epochs...
+------------------------------------------------------------
+Epoch   0: loss=1.1233, dice=0.0585, best_loss=1.1233, best_dice=0.0585
+Epoch  20: loss=0.8070, dice=0.1972, best_loss=0.8005, best_dice=0.1943
+Epoch  40: loss=0.5731, dice=0.3536, best_loss=0.5731, best_dice=0.3536
+Epoch  60: loss=0.5142, dice=0.4034, best_loss=0.4891, best_dice=0.4321
+Epoch  80: loss=0.4513, dice=0.4717, best_loss=0.4490, best_dice=0.4660
+Epoch 100: loss=0.4210, dice=0.4987, best_loss=0.3948, best_dice=0.5243
+Epoch 120: loss=0.3855, dice=0.5312, best_loss=0.3827, best_dice=0.5350
+Epoch 140: loss=0.3500, dice=0.5718, best_loss=0.3462, best_dice=0.5715
+Epoch 160: loss=0.3192, dice=0.6087, best_loss=0.3192, best_dice=0.6087
+Epoch 180: loss=0.3059, dice=0.6263, best_loss=0.2819, best_dice=0.6456
+Epoch 200: loss=0.2585, dice=0.6773, best_loss=0.2585, best_dice=0.6773
+Epoch 220: loss=0.2330, dice=0.7052, best_loss=0.2330, best_dice=0.7052
+Epoch 240: loss=0.2198, dice=0.7288, best_loss=0.2150, best_dice=0.7321
+Epoch 260: loss=0.2150, dice=0.7521, best_loss=0.1919, best_dice=0.7497
+Epoch 280: loss=0.1867, dice=0.7748, best_loss=0.1715, best_dice=0.7857
+Epoch 300: loss=0.1644, dice=0.8000, best_loss=0.1554, best_dice=0.8026
+
+⚠️  Loss > 0.1 at epoch 300, duplicating dataset 4x...
+   New dataset size: 2000
+Epoch 320: loss=0.1220, dice=0.8538, best_loss=0.1177, best_dice=0.8544
+Epoch 340: loss=0.0882, dice=0.8969, best_loss=0.0882, best_dice=0.8969
+Epoch 360: loss=0.0742, dice=0.9212, best_loss=0.0672, best_dice=0.9224
+Epoch 380: loss=0.0440, dice=0.9522, best_loss=0.0440, best_dice=0.9522
+Epoch 400: loss=0.0357, dice=0.9633, best_loss=0.0337, best_dice=0.9632
+Epoch 420: loss=0.0257, dice=0.9748, best_loss=0.0226, best_dice=0.9752
+Epoch 440: loss=0.0167, dice=0.9820, best_loss=0.0167, best_dice=0.9820
+Epoch 460: loss=0.0149, dice=0.9865, best_loss=0.0130, best_dice=0.9861
+Epoch 480: loss=0.0110, dice=0.9890, best_loss=0.0108, best_dice=0.9884
+Epoch 499: loss=0.0096, dice=0.9891, best_loss=0.0096, best_dice=0.9891
+
+============================================================
+FINAL RESULTS
+============================================================
+Best Loss: 0.0096
+Best Dice: 0.9891
+✅ SUCCESS: Loss < 0.1 achieved!

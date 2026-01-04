@@ -89,6 +89,14 @@ def train(config_paths):
     model = build_model(model_cfg, grid_shape, signal_shape).to(device)
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=float(train_cfg["optimizer"]["lr"]), weight_decay=float(train_cfg["optimizer"]["weight_decay"]))
+    
+    # Scheduler: CosineAnnealingLR (matches successful overfit script)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimizer, 
+        T_max=train_cfg["training"]["epochs"], 
+        eta_min=float(train_cfg["optimizer"].get("min_lr", 1e-6))
+    )
+    
     scaler = torch.cuda.amp.GradScaler(enabled=train_cfg.get("mixed_precision", True))
     loss_fn = LossComputer(
         mask_weight=model_cfg["loss"]["mask"]["weight"], 
@@ -97,10 +105,15 @@ def train(config_paths):
     )
 
     best_val = float("inf")
+    best_dice = 0.0
     ckpt_dir = ensure_dir(train_cfg["training"]["ckpt_dir"])
 
     for epoch in range(train_cfg["training"]["epochs"]):
         model.train()
+        epoch_loss = 0.0
+        epoch_dice = 0.0
+        n_batches = 0
+        
         pbar = tqdm(train_loader, desc=f"Epoch {epoch}")
         for batch in pbar:
             signals = batch["signals"].to(device)
@@ -135,11 +148,25 @@ def train(config_paths):
                 torch.nn.utils.clip_grad_norm_(model.parameters(), train_cfg["training"]["grad_clip"])
             scaler.step(optimizer)
             scaler.update()
-            pbar.set_postfix({"loss": loss.item()})
+            
+            # Compute dice for logging
+            with torch.no_grad():
+                probs = torch.sigmoid(outputs["mask_logits"])
+                pred = (probs > 0.5).float()
+                intersection = (pred * mask).sum()
+                union = pred.sum() + mask.sum()
+                dice = (2 * intersection / (union + 1e-6)).item()
+            
+            epoch_loss += loss.item()
+            epoch_dice += dice
+            n_batches += 1
+            pbar.set_postfix({"loss": loss.item(), "dice": f"{dice:.3f}"})
 
         # Validation
         model.eval()
         val_loss = 0.0
+        val_dice = 0.0
+        val_batches = 0
         val_metrics = {}
         with torch.no_grad():
             for batch in val_loader:
@@ -166,19 +193,46 @@ def train(config_paths):
                     targets["bfield"] = bfield.permute(0, 4, 1, 2, 3)
                 losses = loss_fn(outputs, targets)
                 val_loss += losses["total"].item()
+                
+                # Compute val dice
+                probs = torch.sigmoid(outputs["mask_logits"])
+                pred = (probs > 0.5).float()
+                intersection = (pred * mask).sum()
+                union = pred.sum() + mask.sum()
+                val_dice += (2 * intersection / (union + 1e-6)).item()
+                val_batches += 1
+                
                 batch_metrics = compute_metrics(outputs, targets, thresh=train_cfg["metrics"]["threshold"] if "metrics" in train_cfg else 0.5)
                 for k, v in batch_metrics.items():
                     val_metrics[k] = val_metrics.get(k, 0.0) + v.item()
+                    
         val_loss /= len(val_loader)
+        val_dice /= val_batches
         for k in val_metrics:
             val_metrics[k] /= len(val_loader)
-        print(f"Epoch {epoch} val_loss={val_loss:.4f} metrics={val_metrics}")
+        
+        # Step scheduler
+        scheduler.step()
+        lr = scheduler.get_last_lr()[0]
+        
+        # Track best dice
+        avg_train_dice = epoch_dice / n_batches if n_batches > 0 else 0
+        if val_dice > best_dice:
+            best_dice = val_dice
+        
+        # Epoch summary
+        print(f"Epoch {epoch}: loss={epoch_loss/n_batches:.4f}, train_dice={avg_train_dice:.4f}, val_dice={val_dice:.4f}, best_dice={best_dice:.4f}, lr={lr:.2e}")
 
-        # checkpoint
-        if val_loss < best_val:
-            best_val = val_loss
+        # checkpoint - save best model by val_dice
+        if val_dice >= best_dice:
+            ckpt_path = ckpt_dir / "best_model.pt"
+            torch.save({"model_state": model.state_dict(), "config": model_cfg, "epoch": epoch, "best_dice": best_dice}, ckpt_path)
+            print(f"  -> Saved best model (dice={best_dice:.4f})")
+        
+        # Also save periodic checkpoints
+        if epoch % train_cfg["training"].get("val_interval", 20) == 0:
             ckpt_path = ckpt_dir / f"model_epoch{epoch}.pt"
-            torch.save({"model_state": model.state_dict(), "config": model_cfg}, ckpt_path)
+            torch.save({"model_state": model.state_dict(), "config": model_cfg, "epoch": epoch}, ckpt_path)
 
 
 def parse_args():

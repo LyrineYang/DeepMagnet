@@ -24,12 +24,20 @@ deepxde/
 # Data & outputs (generated at runtime)
 /data/
 /outputs/
+
+# Model checkpoints
 *.pt
 *.pth
 
 # Notebooks checkpoints
 .ipynb_checkpoints/
 
-# Logs
+# Logs and debug files
 *.log
+*.txt
 wandb/
+reports/
+
+# Temporary files
+*.tmp
+*.bak

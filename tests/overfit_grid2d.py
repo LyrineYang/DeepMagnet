@@ -89,11 +89,11 @@ def main():
     train_ds = VolumeDataset(str(train_dir), shard_size=shard_size)
     print(f"   Samples: {len(train_ds)}")
     
-    # Check grid size
+    # Check grid size from preprocessed input (C, H, W)
     sample = train_ds[0]
-    sweep_steps = sample["signals"].shape[0]
-    grid_side = int(sweep_steps ** 0.5)
-    print(f"   Sweep steps: {sweep_steps} ({grid_side}x{grid_side} grid)")
+    input_shape = sample["signals"].shape  # (4, H, W)
+    grid_side = input_shape[1]  # H dimension
+    print(f"   Input shape: {input_shape} (grid {grid_side}x{grid_side})")
     
     loader = DataLoader(train_ds, batch_size=16, shuffle=True, num_workers=2, pin_memory=True)
     
@@ -124,12 +124,9 @@ def main():
         n_batches = 0
         
         for batch in loader:
-            signals = batch["signals"].to(device)
-            traj = batch["traj"].to(device)
+            # Dataset already preprocesses to (B, 4, H, W) format
+            inputs = batch["signals"].to(device)
             mask = batch["mask"].to(device)
-            
-            # Preprocess to 2D grid
-            inputs = preprocess_to_grid(signals, traj, grid_size=grid_side)
             
             optimizer.zero_grad()
             outputs = model(inputs)
